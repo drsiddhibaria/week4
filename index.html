@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Green Valley School</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: #f4f6f9;
+        color: #333;
+      }
+
+      /* NAVBAR */
+
+      nav {
+        background: #1e3a8a;
+        padding: 15px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+
+      nav ul li {
+        margin-left: 20px;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      /* HERO */
+
+      .hero {
+        height: 70vh;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1588072432836-e10032774350");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+      }
+
+      .hero h1 {
+        font-size: 50px;
+        margin-bottom: 15px;
+      }
+
+      .hero p {
+        font-size: 20px;
+      }
+
+      /* ABOUT */
+
+      .about {
+        padding: 60px 10%;
+        text-align: center;
+        background: white;
+      }
+
+      .about h2 {
+        margin-bottom: 20px;
+        font-size: 32px;
+      }
+
+      .about p {
+        max-width: 700px;
+        margin: auto;
+        line-height: 1.6;
+      }
+
+      /* DASHBOARD */
+
+      .dashboard {
+        padding: 60px 10%;
+      }
+
+      .form-box {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      input,
+      select {
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 10px 15px;
+        background: #2563eb;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #1e40af;
+      }
+
+      .delete {
+        background: red;
+      }
+
+      .edit {
+        background: orange;
+      }
+
+      /* TABLE */
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      th {
+        background: #2563eb;
+        color: white;
+        padding: 12px;
+      }
+
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+      }
+
+      /* FOOTER */
+
+      footer {
+        background: #1e3a8a;
+        color: white;
+        padding: 40px 10%;
+        margin-top: 40px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      footer h3 {
+        margin-bottom: 10px;
+      }
+
+      footer p {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      footer ul {
+        list-style: none;
+      }
+
+      footer ul li {
+        margin-bottom: 5px;
+      }
+
+      footer ul li a {
+        color: white;
+        text-decoration: none;
+      }
+
+      .copy {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+
+    <nav>
+      <h2>🏫 Green Valley School</h2>
+
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#students">Students</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+      <div>
+        <h1>Welcome to Green Valley School</h1>
+        <p>Inspiring Students to Achieve Excellence</p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+      <h2>About Our School</h2>
+
+      <p>
+        Green Valley School is dedicated to providing quality education and
+        nurturing students to become responsible global citizens. Our mission is
+        to inspire learning, encourage creativity, and develop leadership skills
+        in every student.
+      </p>
+    </section>
+
+    <!-- STUDENT MANAGEMENT -->
+
+    <section class="dashboard" id="students">
+      <h2>Student Management</h2>
+
+      <div class="form-box">
+        <input type="hidden" id="index" />
+
+        <input type="text" id="name" placeholder="Student Name" />
+
+        <input type="number" id="age" placeholder="Age" />
+
+        <select id="course">
+          <option value="">Course</option>
+          <option>BCA</option>
+          <option>BBA</option>
+          <option>B.Tech</option>
+          <option>MCA</option>
+        </select>
+
+        <button onclick="saveStudent()">Add Student</button>
+      </div>
+
+      <input
+        type="text"
+        id="search"
+        placeholder="Search Student..."
+        onkeyup="displayStudents()"
+      />
+
+      <br /><br />
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Course</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="table"></tbody>
+      </table>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer id="contact">
+      <div class="footer-grid">
+        <div>
+          <h3>About School</h3>
+          <p>
+            Green Valley School provides world-class education and focuses on
+            academic excellence, sports, and extracurricular development.
+          </p>
+        </div>
+
+        <div>
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#students">Students</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Contact</h3>
+          <p>Email: info@greenvalley.edu</p>
+          <p>Phone: +91 9876543210</p>
+          <p>Mumbai, India</p>
+        </div>
+      </div>
+
+      <div class="copy">© 2026 Green Valley School. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+      let students = JSON.parse(localStorage.getItem("students")) || [];
+
+      function saveStudent() {
+        let name = document.getElementById("name").value;
+        let age = document.getElementById("age").value;
+        let course = document.getElementById("course").value;
+        let index = document.getElementById("index").value;
+
+        if (name == "" || age == "" || course == "") {
+          alert("Fill all fields");
+          return;
+        }
+
+        let student = { name, age, course };
+
+        if (index === "") {
+          students.push(student);
+        } else {
+          students[index] = student;
+          document.getElementById("index").value = "";
+        }
+
+        localStorage.setItem("students", JSON.stringify(students));
+
+        clearForm();
+        displayStudents();
+      }
+
+      function displayStudents() {
+        let table = document.getElementById("table");
+        table.innerHTML = "";
+
+        let search = document.getElementById("search").value.toLowerCase();
+
+        students.forEach((s, i) => {
+          if (s.name.toLowerCase().includes(search)) {
+            table.innerHTML += `
+<tr>
+<td>${i + 1}</td>
+<td>${s.name}</td>
+<td>${s.age}</td>
+<td>${s.course}</td>
+<td>
+<button class="edit" onclick="editStudent(${i})">Edit</button>
+<button class="delete" onclick="deleteStudent(${i})">Delete</button>
+</td>
+</tr>
+`;
+          }
+        });
+      }
+
+      function editStudent(i) {
+        let s = students[i];
+
+        document.getElementById("name").value = s.name;
+        document.getElementById("age").value = s.age;
+        document.getElementById("course").value = s.course;
+        document.getElementById("index").value = i;
+      }
+
+      function deleteStudent(i) {
+        if (confirm("Delete student?")) {
+          students.splice(i, 1);
+
+          localStorage.setItem("students", JSON.stringify(students));
+
+          displayStudents();
+        }
+      }
+
+      function clearForm() {
+        document.getElementById("name").value = "";
+        document.getElementById("age").value = "";
+        document.getElementById("course").value = "";
+      }
+
+      displayStudents();
+    </script>
+  </body>
+</html>
